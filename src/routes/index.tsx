@@ -6,5 +6,28 @@ export const Route = createFileRoute('/')({
 })
 
 function RouteComponent() {
-  return <Button>Stocklings</Button>
+  return <div className="flex flex-col gap-2 p-2">
+    <Button>Stocklings</Button>
+    <Button>Stocklings</Button>
+    <Button>Stocklings</Button>
+    <Button>Stocklings</Button>
+    <Button>Stocklings</Button>
+    <Button>Stocklings</Button>
+    <Button>Stocklings</Button>
+    <Button>Stocklings</Button>
+    <Button>Stocklings</Button>
+    <Button>Stocklings</Button>
+    <Button>Stocklings</Button>
+    <Button>Stocklings</Button>
+    <Button>Stocklings</Button>
+    <Button>Stocklings</Button>
+    <Button>Stocklings</Button>
+    <Button>Stocklings</Button>
+    <Button>Stocklings</Button>
+    <Button>Stocklings</Button>
+    <Button>Stocklings</Button>
+    <Button>Stocklings</Button>
+    <Button>Stocklings</Button>
+    <Button>Stocklings</Button>
+  </div>
 }
