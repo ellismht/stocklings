@@ -3,8 +3,9 @@ import { createRoot } from 'react-dom/client'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 import './index.css'
 import { routeTree } from './routeTree.gen'
+import { registerSW } from 'virtual:pwa-register';
 
-const router = createRouter({ routeTree })
+const router = createRouter({ routeTree, basepath: '/stocklings/' })
 
 declare module '@tanstack/react-router' {
   interface Register {
@@ -12,8 +13,10 @@ declare module '@tanstack/react-router' {
   }
 }
 
+registerSW({ immediate: true })
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-      <RouterProvider router={router} />
-    </StrictMode>,
+    <RouterProvider router={router} />
+  </StrictMode>,
 )

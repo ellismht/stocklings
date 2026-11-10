@@ -7,10 +7,10 @@ export const Route = createFileRoute('/')({
 
 function RouteComponent() {
   return <div className="flex flex-col gap-2 p-2">
-    <Button>Stocklings</Button>
-    <Button>Stocklings</Button>
-    <Button>Stocklings</Button>
-    <Button>Stocklings</Button>
+    <Button onClick={() => window.location.reload()}>Cze</Button>
+    <Button>elosz</Button>
+    <Button>1234</Button>
+    <Button>0000</Button>
     <Button>Stocklings</Button>
     <Button>Stocklings</Button>
     <Button>Stocklings</Button>

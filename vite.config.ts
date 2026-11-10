@@ -8,6 +8,7 @@ import { tanstackRouter } from '@tanstack/router-plugin/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/stocklings/',
   plugins: [
     tanstackRouter({
       target: 'react',
@@ -18,12 +19,20 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: 'autoUpdate',
+      workbox:{
+        clientsClaim: true,
+        skipWaiting: true
+      },
       devOptions: {
         enabled: true
       },
       manifest: {
         name: 'Stocklings',
         short_name: 'Stocklings',
+        start_url: '/stocklings/',
+        scope: '/stocklings/',
+        display: 'standalone',
+        background_color: '#ffffff',
         theme_color: '#ffffff',
         icons: [
           {

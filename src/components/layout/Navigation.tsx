@@ -4,9 +4,9 @@ import { BellIcon, HomeIcon, SearchIcon, UserIcon } from "lucide-react";
 
 const items = [
     { icon: HomeIcon, label: "Home", value: "/" },
-    { icon: SearchIcon, label: "Search", value: "search" },
-    { icon: BellIcon, label: "News", value: "news" },
-    { icon: UserIcon, label: "Profile", value: "profile" },
+    { icon: SearchIcon, label: "Search", value: "/search" },
+    { icon: BellIcon, label: "News", value: "/news" },
+    { icon: UserIcon, label: "Profile", value: "/profile" },
 ];
 
 const Navigation = () => {
