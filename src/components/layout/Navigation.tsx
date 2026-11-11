@@ -1,11 +1,11 @@
 import { useNavigate } from '@tanstack/react-router';
 import { BottomNavigation, BottomNavigationItem, BottomNavigationItemIcon, BottomNavigationItemLabel, BottomNavigationList } from '../ui/bottom-navigation';
-import { BellIcon, HomeIcon, SearchIcon } from "lucide-react";
+import { PackageCheckIcon, SettingsIcon, ShelvingUnitIcon } from "lucide-react";
 
 const items = [
-    { icon: HomeIcon, label: "Home", value: "/" },
-    { icon: SearchIcon, label: "Search", value: "/search" },
-    { icon: BellIcon, label: "News", value: "/news" }
+    { icon: PackageCheckIcon, label: "Stan", value: "/" },
+    { icon: ShelvingUnitIcon, label: "Magazyn", value: "/warehouse" },
+    { icon: SettingsIcon, label: "Ustawienia", value: "/settings" }
 ];
 
 const Navigation = () => {
