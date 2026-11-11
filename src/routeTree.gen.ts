@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as ScannerRouteImport } from './routes/scanner'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as WarehouseRouteImport } from './routes/warehouse'
 
@@ -22,6 +23,11 @@ const IndexRoute = IndexRouteImport.update({
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ScannerRoute = ScannerRouteImport.update({
+  id: '/scanner',
+  path: '/scanner',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SettingsRoute = SettingsRouteImport.update({
@@ -38,12 +44,14 @@ const WarehouseRoute = WarehouseRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/profile': typeof ProfileRoute
+  '/scanner': typeof ScannerRoute
   '/settings': typeof SettingsRoute
   '/warehouse': typeof WarehouseRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/profile': typeof ProfileRoute
+  '/scanner': typeof ScannerRoute
   '/settings': typeof SettingsRoute
   '/warehouse': typeof WarehouseRoute
 }
@@ -51,20 +59,22 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/profile': typeof ProfileRoute
+  '/scanner': typeof ScannerRoute
   '/settings': typeof SettingsRoute
   '/warehouse': typeof WarehouseRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/profile' | '/settings' | '/warehouse'
+  fullPaths: '/' | '/profile' | '/scanner' | '/settings' | '/warehouse'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/profile' | '/settings' | '/warehouse'
-  id: '__root__' | '/' | '/profile' | '/settings' | '/warehouse'
+  to: '/' | '/profile' | '/scanner' | '/settings' | '/warehouse'
+  id: '__root__' | '/' | '/profile' | '/scanner' | '/settings' | '/warehouse'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ProfileRoute: typeof ProfileRoute
+  ScannerRoute: typeof ScannerRoute
   SettingsRoute: typeof SettingsRoute
   WarehouseRoute: typeof WarehouseRoute
 }
@@ -83,6 +93,13 @@ declare module '@tanstack/react-router' {
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/scanner': {
+      id: '/scanner'
+      path: '/scanner'
+      fullPath: '/scanner'
+      preLoaderRoute: typeof ScannerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/settings': {
@@ -105,6 +122,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ProfileRoute: ProfileRoute,
+  ScannerRoute: ScannerRoute,
   SettingsRoute: SettingsRoute,
   WarehouseRoute: WarehouseRoute,
 }
