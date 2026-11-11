@@ -32,8 +32,8 @@ export default defineConfig({
         start_url: '/stocklings/',
         scope: '/stocklings/',
         display: 'standalone',
-        background_color: '#ffffff',
-        theme_color: '#ffffff',
+        theme_color: '#111827',
+        background_color: '#F1F5F9',
         icons: [
           {
             src: 'pwa-192x192.png',

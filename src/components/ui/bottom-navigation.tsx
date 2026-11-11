@@ -65,7 +65,7 @@ export const BottomNavigationList = (
         "fixed inset-x-0 bottom-0 z-10",
         "flex w-full items-center justify-around",
         "min-h-14 shrink-0",
-        "border-t bg-background/60 backdrop-blur-sm",
+        "bg-background/60 backdrop-blur-sm",
         "pb-[env(safe-area-inset-bottom,0px)]",
         className
       )}
@@ -90,7 +90,7 @@ export const BottomNavigationItem = (
         "text-muted-foreground",
         "cursor-pointer",
         "transition-colors",
-        "hover:text-foreground",
+        "hover:text-nav-hover-foreground",
         "aria-selected:text-primary",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
         "data-disabled:pointer-events-none data-disabled:opacity-64",
