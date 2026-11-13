@@ -4,6 +4,7 @@ import { RouterProvider, createRouter } from '@tanstack/react-router'
 import './index.css'
 import { routeTree } from './routeTree.gen'
 import { registerSW } from 'virtual:pwa-register';
+import { Toaster } from './components/ui/toast'
 
 const router = createRouter({ routeTree, basepath: '/stocklings/' })
 
@@ -18,5 +19,6 @@ registerSW({ immediate: true })
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <RouterProvider router={router} />
+    <Toaster/>
   </StrictMode>,
 )
