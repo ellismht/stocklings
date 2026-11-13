@@ -1,1 +1,0 @@
-import{i as e,n as t,r as n,t as r}from"./index-lUy6-0PS.js";var i=t(),a=e();function o(){let e=(0,i.c)(2),t=n(),o;return e[0]===t?o=e[1]:(o=(0,a.jsxs)(`div`,{className:`flex flex-col gap-2 p-2`,children:[`State`,(0,a.jsx)(r,{onClick:()=>t({to:`/login`})})]}),e[0]=t,e[1]=o),o}export{o as component};
