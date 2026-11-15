@@ -18,7 +18,8 @@ export function useLogin() {
             await navigate({ to: "/state" });
 
             toast.add({
-                title: "Zostałeś poprawnie zalogowany."
+                title: "Zostałeś poprawnie zalogowany.",
+                type: "info"
             });
         }
     })
@@ -31,7 +32,8 @@ export function useRegister() {
         },
         onSuccess: async () => {
             toast.add({
-                title: "Rejestracja przebiegła pomyślnie."
+                title: "Rejestracja przebiegła pomyślnie.",
+                type: "info"
             })
         }
     })
@@ -51,7 +53,8 @@ export function useLogout() {
             await navigate({to: "/login"});
 
             toast.add({
-                title: "Wylogowano."
+                title: "Wylogowano.",
+                type: "info"
             })
         }
     })

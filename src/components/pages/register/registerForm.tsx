@@ -12,6 +12,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { useRegister } from "@/services/identity-service";
 import { Spinner } from "@/components/ui/spinner";
 import { useNavigate } from "@tanstack/react-router"
+import { ArrowLeftIcon } from "lucide-react"
 
 const formSchema = z.object({
     email: z
@@ -48,7 +49,8 @@ export function RegisterForm() {
     return (
         <div className="flex flex-col gap-4 p-4 pt-18 w-full">
             <Card>
-                <CardHeader>
+                <CardHeader className="flex items-center gap-2">
+                    <Button variant="default" onClick={() => navigate({to: ".."})}><ArrowLeftIcon/></Button>
                     <CardTitle>Register</CardTitle>
                 </CardHeader>
                 <CardContent>

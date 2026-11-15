@@ -1,6 +1,5 @@
 import { LoginForm } from '@/components/pages/login/loginForm';
 import { Button } from '@/components/ui/button';
-import { toast } from '@/components/ui/toast';
 import { InitCsrfToken } from '@/services/api-client';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 

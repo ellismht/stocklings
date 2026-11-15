@@ -10,7 +10,7 @@ const TopBar = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-999 ">
+    <div className="fixed top-0 left-0 right-0">
       <div className="flex items-center justify-between px-2">
         <div onClick={() => navigate({ to: "/" })} className="cursor-pointer">
           <img src="/stocklings/images/stocklings-t.png" alt="Stocklings" className="h-9.5 w-auto object-contain" />
