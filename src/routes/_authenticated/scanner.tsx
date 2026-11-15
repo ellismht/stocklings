@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Scanner } from '@yudiel/react-qr-scanner';
 
-export const Route = createFileRoute('/scanner')({
+export const Route = createFileRoute('/_authenticated/scanner')({
   component: ScannerPage,
 })
 

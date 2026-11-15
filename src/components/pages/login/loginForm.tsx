@@ -9,8 +9,8 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { toast } from "@/components/ui/toast"
-import { api } from "@/services/api-client"
+import { useLogin } from "@/services/identity-service"
+import { Spinner } from "@/components/ui/spinner"
 
 const formSchema = z.object({
   email: z
@@ -22,6 +22,7 @@ const formSchema = z.object({
 });
 
 export function LoginForm() {
+  const {mutateAsync, isPending} = useLogin();
   const form = useForm({
     defaultValues: {
       email: "",
@@ -31,19 +32,12 @@ export function LoginForm() {
       onSubmit: formSchema,
     },
     onSubmit: async ({ value }) => {
-      toast.add({
-        title: "Login Successful",
-        description: JSON.stringify(value),
-      });
-
-      await api.post("/identity/login", {json: {email: value.email, password: value.password}, baseUrl: "https://localhost:7196"})
-      const smth = await api.get("/identity/me", {baseUrl: "https://localhost:7196", credentials: "include"});
-      console.log(await smth.json());
+      await mutateAsync({email: value.email, password: value.password});
     },
   });
 
   return (
-    <div className="flex flex-col gap-4 p-4 pt-18 w-full">
+    <div className="flex flex-col gap-4 p-4 pt-18 w-full max-w-lg">
       <Card>
         <CardHeader>
           <CardTitle>Login</CardTitle>
@@ -117,8 +111,8 @@ export function LoginForm() {
         </CardContent>
         <CardFooter>
           <Field orientation="vertical">
-            <Button type="submit" form="login-form">
-              Login
+            <Button type="submit" form="login-form" variant={isPending ? "outline" : "default"} disabled={isPending}>
+              {isPending ? <Spinner/> : "Login"}
             </Button>
           </Field>
         </CardFooter>

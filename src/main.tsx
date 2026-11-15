@@ -4,9 +4,14 @@ import { RouterProvider, createRouter } from '@tanstack/react-router'
 import './index.css'
 import { routeTree } from './routeTree.gen'
 import { registerSW } from 'virtual:pwa-register';
-import { Toaster } from './components/ui/toast'
+import { InitCsrfToken } from './services/api-client'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-const router = createRouter({ routeTree, basepath: '/stocklings/' })
+registerSW({ immediate: true });
+
+const queryClient = new QueryClient();
+
+const router = createRouter({ routeTree, basepath: '/stocklings/', context: {queryClient} })
 
 declare module '@tanstack/react-router' {
   interface Register {
@@ -14,11 +19,12 @@ declare module '@tanstack/react-router' {
   }
 }
 
-registerSW({ immediate: true })
+await InitCsrfToken();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
-    <Toaster/>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   </StrictMode>,
 )

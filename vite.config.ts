@@ -40,7 +40,7 @@ export default defineConfig({
         scope: '/stocklings/',
         display: 'standalone',
         theme_color: '#111827',
-        background_color: '#F1F5F9',
+        background_color: '#111827',
         icons: [
           {
             src: 'pwa-192x192.png',

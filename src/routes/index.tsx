@@ -1,14 +1,19 @@
-import { Button } from '@/components/ui/button';
-import { createFileRoute, useNavigate } from '@tanstack/react-router'
+import { getCurrentUserQueryOptions } from '@/services/identity-service';
+import { createFileRoute, redirect } from '@tanstack/react-router'
+import { HTTPError } from 'ky';
 
 export const Route = createFileRoute('/')({
-  component: RouteComponent,
-})
+  beforeLoad: async ({ context }) => {
+      try {
+        await context.queryClient.query(getCurrentUserQueryOptions());
+      } catch (error) {
+        if (error instanceof HTTPError && error.response.status === 401)
+          throw redirect({ to: "/login" });
 
-function RouteComponent() {
-  const navigate = useNavigate();
-  return <div className="flex flex-col gap-2 p-2">
-    State
-    <Button onClick={() => navigate({to: "/login"})}>Login</Button>
-  </div>
-}
+        throw error;
+      }
+
+      throw redirect({to: "/state"});
+    },
+});
+

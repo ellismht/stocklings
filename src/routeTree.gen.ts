@@ -10,16 +10,22 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as RegisterRouteImport } from './routes/register'
-import { Route as ScannerRouteImport } from './routes/scanner'
-import { Route as SettingsRouteImport } from './routes/settings'
-import { Route as WarehouseRouteImport } from './routes/warehouse'
+import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
+import { Route as AuthenticatedScannerRouteImport } from './routes/_authenticated/scanner'
+import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as AuthenticatedStateRouteImport } from './routes/_authenticated/state'
+import { Route as AuthenticatedWarehouseRouteImport } from './routes/_authenticated/warehouse'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -27,98 +33,108 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProfileRoute = ProfileRouteImport.update({
-  id: '/profile',
-  path: '/profile',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const RegisterRoute = RegisterRouteImport.update({
   id: '/register',
   path: '/register',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ScannerRoute = ScannerRouteImport.update({
+const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedScannerRoute = AuthenticatedScannerRouteImport.update({
   id: '/scanner',
   path: '/scanner',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const SettingsRoute = SettingsRouteImport.update({
+const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const WarehouseRoute = WarehouseRouteImport.update({
+const AuthenticatedStateRoute = AuthenticatedStateRouteImport.update({
+  id: '/state',
+  path: '/state',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedWarehouseRoute = AuthenticatedWarehouseRouteImport.update({
   id: '/warehouse',
   path: '/warehouse',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
-  '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
-  '/scanner': typeof ScannerRoute
-  '/settings': typeof SettingsRoute
-  '/warehouse': typeof WarehouseRoute
+  '/profile': typeof AuthenticatedProfileRoute
+  '/scanner': typeof AuthenticatedScannerRoute
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/state': typeof AuthenticatedStateRoute
+  '/warehouse': typeof AuthenticatedWarehouseRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
-  '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
-  '/scanner': typeof ScannerRoute
-  '/settings': typeof SettingsRoute
-  '/warehouse': typeof WarehouseRoute
+  '/profile': typeof AuthenticatedProfileRoute
+  '/scanner': typeof AuthenticatedScannerRoute
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/state': typeof AuthenticatedStateRoute
+  '/warehouse': typeof AuthenticatedWarehouseRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/login': typeof LoginRoute
-  '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
-  '/scanner': typeof ScannerRoute
-  '/settings': typeof SettingsRoute
-  '/warehouse': typeof WarehouseRoute
+  '/_authenticated/profile': typeof AuthenticatedProfileRoute
+  '/_authenticated/scanner': typeof AuthenticatedScannerRoute
+  '/_authenticated/settings': typeof AuthenticatedSettingsRoute
+  '/_authenticated/state': typeof AuthenticatedStateRoute
+  '/_authenticated/warehouse': typeof AuthenticatedWarehouseRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/login'
-    | '/profile'
     | '/register'
+    | '/profile'
     | '/scanner'
     | '/settings'
+    | '/state'
     | '/warehouse'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/login'
-    | '/profile'
     | '/register'
+    | '/profile'
     | '/scanner'
     | '/settings'
+    | '/state'
     | '/warehouse'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
     | '/login'
-    | '/profile'
     | '/register'
-    | '/scanner'
-    | '/settings'
-    | '/warehouse'
+    | '/_authenticated/profile'
+    | '/_authenticated/scanner'
+    | '/_authenticated/settings'
+    | '/_authenticated/state'
+    | '/_authenticated/warehouse'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   LoginRoute: typeof LoginRoute
-  ProfileRoute: typeof ProfileRoute
   RegisterRoute: typeof RegisterRoute
-  ScannerRoute: typeof ScannerRoute
-  SettingsRoute: typeof SettingsRoute
-  WarehouseRoute: typeof WarehouseRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -130,18 +146,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/profile': {
-      id: '/profile'
-      path: '/profile'
-      fullPath: '/profile'
-      preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/register': {
@@ -151,38 +167,68 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/scanner': {
-      id: '/scanner'
+    '/_authenticated/profile': {
+      id: '/_authenticated/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof AuthenticatedProfileRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/scanner': {
+      id: '/_authenticated/scanner'
       path: '/scanner'
       fullPath: '/scanner'
-      preLoaderRoute: typeof ScannerRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedScannerRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/settings': {
-      id: '/settings'
+    '/_authenticated/settings': {
+      id: '/_authenticated/settings'
       path: '/settings'
       fullPath: '/settings'
-      preLoaderRoute: typeof SettingsRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedSettingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/warehouse': {
-      id: '/warehouse'
+    '/_authenticated/state': {
+      id: '/_authenticated/state'
+      path: '/state'
+      fullPath: '/state'
+      preLoaderRoute: typeof AuthenticatedStateRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/warehouse': {
+      id: '/_authenticated/warehouse'
       path: '/warehouse'
       fullPath: '/warehouse'
-      preLoaderRoute: typeof WarehouseRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedWarehouseRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
+  AuthenticatedScannerRoute: typeof AuthenticatedScannerRoute
+  AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
+  AuthenticatedStateRoute: typeof AuthenticatedStateRoute
+  AuthenticatedWarehouseRoute: typeof AuthenticatedWarehouseRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedProfileRoute: AuthenticatedProfileRoute,
+  AuthenticatedScannerRoute: AuthenticatedScannerRoute,
+  AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
+  AuthenticatedStateRoute: AuthenticatedStateRoute,
+  AuthenticatedWarehouseRoute: AuthenticatedWarehouseRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   LoginRoute: LoginRoute,
-  ProfileRoute: ProfileRoute,
   RegisterRoute: RegisterRoute,
-  ScannerRoute: ScannerRoute,
-  SettingsRoute: SettingsRoute,
-  WarehouseRoute: WarehouseRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
