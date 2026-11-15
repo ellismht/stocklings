@@ -1,0 +1,1 @@
+import{b as e,p as t,v as n,y as r}from"./index-DxRp4bIC.js";var i=n(),a=e();function o(){let e=(0,i.c)(2),n=r(),o;return e[0]===n?o=e[1]:(o=(0,a.jsxs)(`div`,{className:`flex flex-col gap-2 p-2`,children:[`State`,(0,a.jsx)(t,{onClick:()=>n({to:`/login`}),children:`Login`})]}),e[0]=n,e[1]=o),o}export{o as component};
