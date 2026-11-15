@@ -21,7 +21,7 @@ const formSchema = z.object({
     .max(100, "Password must be at most 100 characters."),
 });
 
-export function LoginForm() {
+function LoginForm() {
   const {mutateAsync, isPending} = useLogin();
   const form = useForm({
     defaultValues: {
@@ -120,3 +120,5 @@ export function LoginForm() {
     </div>
   )
 }
+
+export default LoginForm;
