@@ -10,8 +10,8 @@ import {
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { toast } from "@/components/ui/toast"
-import ky from "ky"
 import { api } from "@/services/api-client"
+
 const formSchema = z.object({
   email: z
     .email("Please enter a valid email address."),

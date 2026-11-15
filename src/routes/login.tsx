@@ -1,6 +1,6 @@
 import { LoginForm } from '@/components/pages/login/loginForm';
 import { Button } from '@/components/ui/button';
-import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/login')({
     component: LoginPage,
