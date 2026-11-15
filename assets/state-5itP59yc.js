@@ -1,0 +1,1 @@
+import{n as e,t}from"./compiler-runtime-CUb8v2iE.js";import{t as n}from"./input-Dph3fmgb.js";var r=t(),i=e();function a(){let e=(0,r.c)(1),t;return e[0]===Symbol.for(`react.memo_cache_sentinel`)?(t=(0,i.jsxs)(`div`,{className:`flex flex-col gap-2 p-2`,children:[`State`,(0,i.jsx)(n,{type:`text`})]}),e[0]=t):t=e[0],t}export{a as component};
