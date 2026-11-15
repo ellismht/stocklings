@@ -1,13 +1,19 @@
 import { LoginForm } from '@/components/pages/login/loginForm';
-import { createFileRoute } from '@tanstack/react-router';
+import { Button } from '@/components/ui/button';
+import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/login')({
     component: LoginPage,
 })
 
 function LoginPage() {
-    return (
+    const navigate = useNavigate();
+    return (<div className='flex flex-col w-full items-center'>
         <LoginForm />
+        <div>
+            Nie masz konta? LOL lepiej <Button variant="link" onClick={() => navigate({ to: "/register" })}>Zarejestruj się</Button>
+        </div>
+    </div>
     )
 }
 

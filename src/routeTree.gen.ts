@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as RegisterRouteImport } from './routes/register'
 import { Route as ScannerRouteImport } from './routes/scanner'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as WarehouseRouteImport } from './routes/warehouse'
@@ -29,6 +30,11 @@ const LoginRoute = LoginRouteImport.update({
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ScannerRoute = ScannerRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
+  '/register': typeof RegisterRoute
   '/scanner': typeof ScannerRoute
   '/settings': typeof SettingsRoute
   '/warehouse': typeof WarehouseRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
+  '/register': typeof RegisterRoute
   '/scanner': typeof ScannerRoute
   '/settings': typeof SettingsRoute
   '/warehouse': typeof WarehouseRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
+  '/register': typeof RegisterRoute
   '/scanner': typeof ScannerRoute
   '/settings': typeof SettingsRoute
   '/warehouse': typeof WarehouseRoute
@@ -75,14 +84,28 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/login' | '/profile' | '/scanner' | '/settings' | '/warehouse'
+    | '/'
+    | '/login'
+    | '/profile'
+    | '/register'
+    | '/scanner'
+    | '/settings'
+    | '/warehouse'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/profile' | '/scanner' | '/settings' | '/warehouse'
+  to:
+    | '/'
+    | '/login'
+    | '/profile'
+    | '/register'
+    | '/scanner'
+    | '/settings'
+    | '/warehouse'
   id:
     | '__root__'
     | '/'
     | '/login'
     | '/profile'
+    | '/register'
     | '/scanner'
     | '/settings'
     | '/warehouse'
@@ -92,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LoginRoute: typeof LoginRoute
   ProfileRoute: typeof ProfileRoute
+  RegisterRoute: typeof RegisterRoute
   ScannerRoute: typeof ScannerRoute
   SettingsRoute: typeof SettingsRoute
   WarehouseRoute: typeof WarehouseRoute
@@ -118,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/scanner': {
@@ -148,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LoginRoute: LoginRoute,
   ProfileRoute: ProfileRoute,
+  RegisterRoute: RegisterRoute,
   ScannerRoute: ScannerRoute,
   SettingsRoute: SettingsRoute,
   WarehouseRoute: WarehouseRoute,

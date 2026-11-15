@@ -9,6 +9,6 @@ function RouteComponent() {
   const navigate = useNavigate();
   return <div className="flex flex-col gap-2 p-2">
     State
-    <Button onClick={() => navigate({to: "/login"})}></Button>
+    <Button onClick={() => navigate({to: "/login"})}>Login</Button>
   </div>
 }

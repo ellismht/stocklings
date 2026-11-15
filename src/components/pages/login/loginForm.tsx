@@ -10,6 +10,8 @@ import {
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { toast } from "@/components/ui/toast"
+import ky from "ky"
+import { api } from "@/services/api-client"
 const formSchema = z.object({
   email: z
     .email("Please enter a valid email address."),
@@ -32,7 +34,11 @@ export function LoginForm() {
       toast.add({
         title: "Login Successful",
         description: JSON.stringify(value),
-      })
+      });
+
+      await api.post("/identity/login", {json: {email: value.email, password: value.password}, baseUrl: "https://localhost:7196"})
+      const smth = await api.get("/identity/me", {baseUrl: "https://localhost:7196", credentials: "include"});
+      console.log(await smth.json());
     },
   });
 

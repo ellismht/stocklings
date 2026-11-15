@@ -4,17 +4,24 @@ import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa';
 import path from "path"
 import tailwindcss from "@tailwindcss/vite"
+import mkcert from "vite-plugin-mkcert"
 import { tanstackRouter } from '@tanstack/router-plugin/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
   base: '/stocklings/',
+  server: {
+    host: "localhost",
+    port: 5173,
+    strictPort: true,
+  },
   plugins: [
     tanstackRouter({
       target: 'react',
       autoCodeSplitting: true,
     }),
     react(),
+    mkcert(),
     babel({ presets: [reactCompilerPreset()] }),
     tailwindcss(),
     VitePWA({
