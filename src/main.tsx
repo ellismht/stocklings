@@ -4,6 +4,7 @@ import './index.css'
 import { routeTree } from './routeTree.gen'
 import { registerSW } from 'virtual:pwa-register';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { InitCsrfToken } from './services/api-client';
 
 registerSW({ immediate: true });
 
@@ -17,7 +18,7 @@ declare module '@tanstack/react-router' {
   }
 }
 
-// await InitCsrfToken();
+await InitCsrfToken();
 
 createRoot(document.getElementById('root')!).render(
   <QueryClientProvider client={queryClient}>
